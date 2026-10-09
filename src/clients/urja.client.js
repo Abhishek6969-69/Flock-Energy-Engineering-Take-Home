@@ -9,6 +9,7 @@ const BASE_URL =
 
 const jar = new CookieJar();
 
+
 const client = wrapper(
   axios.create({
     baseURL: BASE_URL,
@@ -16,9 +17,12 @@ const client = wrapper(
     timeout: Number(process.env.REQUEST_TIMEOUT_MS || 10000),
     headers: {
       Accept: "application/json",
+      Origin: BASE_URL,
+      Referer: `${BASE_URL}/login`,
     },
   })
 );
+
 
 let authenticated = false;
 let loginPromise = null;
