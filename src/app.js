@@ -14,12 +14,20 @@ app.get("/health", (req, res) => {
 
 app.use("/api/v1/meters", meterRoutes);
 
+
 app.use((err, req, res, next) => {
-  console.error("Request failed:", err.message);
+  if (err.statusCode === 404) {
+    return res.status(404).json({
+      error: err.message,
+    });
+  }
+
+  console.error("API error:", err.message);
 
   res.status(502).json({
     error: "Unable to retrieve data from the meter portal",
   });
 });
+
 
 module.exports = app;
