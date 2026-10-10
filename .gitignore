@@ -8,3 +8,9 @@ coverage/
 .DS_Store
 npm-debug.log*
 .env
+
+# Environment secrets
+.env
+
+# Installed dependencies
+node_modules/
